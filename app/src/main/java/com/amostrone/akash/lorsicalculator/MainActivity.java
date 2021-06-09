@@ -1,6 +1,8 @@
 package com.amostrone.akash.lorsicalculator;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -34,4 +36,17 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
+    public void spiclick(View view) {
+
+        BottomNavigationView bottomNavigationView;
+        bottomNavigationView = (BottomNavigationView)findViewById(R.id.nav_view);
+        bottomNavigationView.setSelectedItemId(R.id.navigation_spi);
+    }
+
+    public void lorclick(View view) {
+
+        BottomNavigationView bottomNavigationView;
+        bottomNavigationView = (BottomNavigationView)findViewById(R.id.nav_view);
+        bottomNavigationView.setSelectedItemId(R.id.navigation_lorentz);
+    }
 }
