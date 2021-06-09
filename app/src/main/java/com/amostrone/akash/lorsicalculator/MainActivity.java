@@ -16,6 +16,10 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.amostrone.akash.lorsicalculator.databinding.ActivityMainBinding;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
@@ -45,6 +49,28 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.navigation_spi);
     }
 
+    public void spical(View view) {
+        TextView cur_time = findViewById(R.id.cur_time);
+        TextView spi_ans = findViewById(R.id.spi_ans);
+
+        SimpleDateFormat dateFormat= new SimpleDateFormat("hh:mm:ss a");
+        String dateString = dateFormat.format(new Date());
+        //Toast.makeText(this, dateString, Toast.LENGTH_SHORT).show();
+        cur_time.setText("Current Time is " + dateString);
+
+        float h,m,s,ans=0;
+        h=Float.parseFloat(dateString.substring(0,2));
+        m=Float.parseFloat(dateString.substring(3,5));
+        s=Float.parseFloat(dateString.substring(6,8));
+
+        ans=1/(m*m*m + s);
+        for(int i=2;i<=h;i++)ans*=i;
+
+        spi_ans.setText("SPI Factor is "+ans);
+
+        updateTextView();
+    }
+
     public void lorclick(View view) {
 
         BottomNavigationView bottomNavigationView;
@@ -58,5 +84,31 @@ public class MainActivity extends AppCompatActivity {
         double x=(Double.parseDouble(v.getText().toString()))/3e8;
         double an= 1/(Math.sqrt(1-x*x));
         ans.setText("Answer is "+an);
+    }
+
+    private void updateTextView() {
+        MainActivity.this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                TextView cur_time = findViewById(R.id.cur_time);
+                TextView spi_ans = findViewById(R.id.spi_ans);
+
+                SimpleDateFormat dateFormat= new SimpleDateFormat("hh:mm:ss a");
+                String dateString = dateFormat.format(new Date());
+                //Toast.makeText(this, dateString, Toast.LENGTH_SHORT).show();
+                cur_time.setText("Current Time is " + dateString);
+
+                float h,m,s,ans=0;
+                h=Float.parseFloat(dateString.substring(0,2));
+                m=Float.parseFloat(dateString.substring(3,5));
+                s=Float.parseFloat(dateString.substring(6,8));
+
+                ans=1/(m*m*m + s);
+                for(int i=2;i<=h;i++)ans*=i;
+
+                spi_ans.setText("SPI Factor is "+ans);
+            }
+        });
+
     }
 }
