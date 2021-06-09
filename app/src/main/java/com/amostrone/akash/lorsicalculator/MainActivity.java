@@ -2,6 +2,8 @@ package com.amostrone.akash.lorsicalculator;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -48,5 +50,13 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView;
         bottomNavigationView = (BottomNavigationView)findViewById(R.id.nav_view);
         bottomNavigationView.setSelectedItemId(R.id.navigation_lorentz);
+    }
+
+    public void lorcal(View view) {
+        TextView ans=findViewById(R.id.lor_ans);
+        EditText v=findViewById(R.id.lor_input);
+        double x=(Double.parseDouble(v.getText().toString()))/3e8;
+        double an= 1/(Math.sqrt(1-x*x));
+        ans.setText("Answer is "+an);
     }
 }
