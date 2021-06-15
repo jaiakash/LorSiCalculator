@@ -1,6 +1,7 @@
 package com.amostrone.akash.lorsicalculator;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -22,6 +23,7 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    int count=3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void lorclick(View view) {
+        count=3;
 
         BottomNavigationView bottomNavigationView;
         bottomNavigationView = (BottomNavigationView)findViewById(R.id.nav_view);
@@ -80,6 +83,10 @@ public class MainActivity extends AppCompatActivity {
     public void lorcal(View view) {
         TextView ans=findViewById(R.id.lor_ans);
         EditText v=findViewById(R.id.lor_input);
+        if(TextUtils.isEmpty(v.getText().toString())) {
+            v.setError("Enter Velocity Value");
+            return;
+        }
         double x=(Double.parseDouble(v.getText().toString()))/3e8;
         double an= 1/(Math.sqrt(1-x*x));
         ans.setText("Answer is "+an);
@@ -88,14 +95,29 @@ public class MainActivity extends AppCompatActivity {
     public void lorprac(View view){
         EditText v=findViewById(R.id.lor_prac_vel);
         EditText s=findViewById(R.id.lor_prac_spi);
+        if(TextUtils.isEmpty(s.getText().toString())) {
+            s.setError("Enter Spi Value");
+            return;
+        }
+        if(TextUtils.isEmpty(v.getText().toString())) {
+            v.setError("Enter Velocity Value");
+            return;
+        }
         double vel=(Double.parseDouble(v.getText().toString()))/3e8;
         double ans= 1/(Math.sqrt(1-vel*vel));
         double spi=Double.parseDouble(s.getText().toString());
-        if((Math.abs(ans-spi))<1e-10){
+        if((Math.abs(ans-spi))<1e-6){
+            count=3;
             Toast.makeText(this, "Correct Ans", Toast.LENGTH_SHORT).show();
         }
         else {
-            Toast.makeText(this, "Wrong Ans", Toast.LENGTH_SHORT).show();
+            count--;
+            if(count>0)
+            Toast.makeText(this, "Wrong Ans "+count+ " Chances Remaining", Toast.LENGTH_SHORT).show();
+            else{
+                count=3;
+                Toast.makeText(this, "Sorry you answers were wrong. Correct Answer is "+ans, Toast.LENGTH_LONG).show();
+            }
         }
     }
 
