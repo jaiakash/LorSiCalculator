@@ -16,7 +16,6 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.amostrone.akash.lorsicalculator.databinding.ActivityMainBinding;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -84,6 +83,20 @@ public class MainActivity extends AppCompatActivity {
         double x=(Double.parseDouble(v.getText().toString()))/3e8;
         double an= 1/(Math.sqrt(1-x*x));
         ans.setText("Answer is "+an);
+    }
+
+    public void lorprac(View view){
+        EditText v=findViewById(R.id.lor_prac_vel);
+        EditText s=findViewById(R.id.lor_prac_spi);
+        double vel=(Double.parseDouble(v.getText().toString()))/3e8;
+        double ans= 1/(Math.sqrt(1-vel*vel));
+        double spi=Double.parseDouble(s.getText().toString());
+        if((Math.abs(ans-spi))<1e-10){
+            Toast.makeText(this, "Correct Ans", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(this, "Wrong Ans", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void updateTextView() {

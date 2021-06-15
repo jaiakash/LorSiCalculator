@@ -8,23 +8,26 @@
 
     <Button
         android:id="@+id/btn_lorentz"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:text="Lorentz"
+        android:layout_width="175dp"
+        android:layout_height="145dp"
+        android:lines="2"
         android:onClick="lorclick"
+        android:text="Lorentz \n Calculator"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.361" />
 
     <Button
         android:id="@+id/btn_spi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="72dp"
+        android:layout_width="175dp"
+        android:layout_height="145dp"
         android:onClick="spiclick"
-        android:text="Spi"
+        android:text="Spi \n Calculator"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.7" />
 </androidx.constraintlayout.widget.ConstraintLayout>
