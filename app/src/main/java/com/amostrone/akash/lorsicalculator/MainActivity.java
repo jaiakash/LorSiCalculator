@@ -1,6 +1,8 @@
 package com.amostrone.akash.lorsicalculator;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -44,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void spiclick(View view) {
+        //Vibration
+        Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibe.vibrate(80);
 
         BottomNavigationView bottomNavigationView;
         bottomNavigationView = (BottomNavigationView)findViewById(R.id.nav_view);
@@ -51,6 +56,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void spical(View view) {
+        //Vibration
+        Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibe.vibrate(80);
+
         TextView cur_time = findViewById(R.id.cur_time);
         TextView spi_ans = findViewById(R.id.spi_ans);
 
@@ -74,6 +83,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void lorclick(View view) {
         count=3;
+        //Vibration
+        Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibe.vibrate(80);
 
         BottomNavigationView bottomNavigationView;
         bottomNavigationView = (BottomNavigationView)findViewById(R.id.nav_view);
@@ -81,6 +93,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void lorcal(View view) {
+
+        //Vibration
+        Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibe.vibrate(80);
+
         TextView ans=findViewById(R.id.lor_ans);
         EditText v=findViewById(R.id.lor_input);
         if(TextUtils.isEmpty(v.getText().toString())) {
@@ -93,6 +110,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void lorprac(View view){
+
+        //Vibration
+        Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibe.vibrate(80);
+
         EditText v=findViewById(R.id.lor_prac_vel);
         EditText s=findViewById(R.id.lor_prac_spi);
         if(TextUtils.isEmpty(s.getText().toString())) {
