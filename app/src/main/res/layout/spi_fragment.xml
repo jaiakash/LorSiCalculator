@@ -12,7 +12,9 @@
         android:id="@+id/cur_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Current Time"
+        android:text="Current Time "
+        android:textStyle="bold"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +25,9 @@
         android:id="@+id/spi_ans"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Spi Factor is "
+        android:text="Spi Factor is 0"
+        android:textStyle="bold"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,13 +36,14 @@
 
     <Button
         android:id="@+id/spi_cal"
+        android:layout_width="188dp"
+        android:layout_height="109dp"
         android:onClick="spical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Calculate"
+        android:text="Click to Calculate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6" />
+        app:layout_constraintVertical_bias="0.7" />
 </androidx.constraintlayout.widget.ConstraintLayout>
