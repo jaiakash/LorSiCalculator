@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -46,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void spiclick(View view) {
+        ConstraintLayout lorentz_home = findViewById(R.id.container);
+        lorentz_home.setBackgroundColor(getResources().getColor(R.color.white));
         //Vibration
         Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vibe.vibrate(80);
@@ -56,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void spical(View view) {
+        ConstraintLayout lorentz_home = findViewById(R.id.container);
+        lorentz_home.setBackgroundColor(getResources().getColor(R.color.white));
         //Vibration
         Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vibe.vibrate(80);
@@ -82,6 +87,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void lorclick(View view) {
+        ConstraintLayout lorentz_home = findViewById(R.id.container);
+        lorentz_home.setBackgroundColor(getResources().getColor(R.color.white));
         count=3;
         //Vibration
         Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -93,7 +100,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void lorcal(View view) {
-
+        ConstraintLayout lorentz_home = findViewById(R.id.container);
+        lorentz_home.setBackgroundColor(getResources().getColor(R.color.white));
         //Vibration
         Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vibe.vibrate(80);
@@ -110,6 +118,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void lorprac(View view){
+
+        ConstraintLayout lorentz_home = findViewById(R.id.container);
 
         //Vibration
         Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -130,10 +140,12 @@ public class MainActivity extends AppCompatActivity {
         double spi=Double.parseDouble(s.getText().toString());
         if((Math.abs(ans-spi))<1e-6){
             count=3;
+            lorentz_home.setBackgroundColor(getResources().getColor(R.color.right));
             Toast.makeText(this, "Correct Ans", Toast.LENGTH_SHORT).show();
         }
         else {
             count--;
+            lorentz_home.setBackgroundColor(getResources().getColor(R.color.wrong));
             if(count>0)
             Toast.makeText(this, "Wrong Ans "+count+ " Chances Remaining", Toast.LENGTH_SHORT).show();
             else{
