@@ -2,6 +2,7 @@ package com.amostrone.akash.lorsicalculator;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.text.TextUtils;
 import android.view.View;
@@ -140,12 +141,28 @@ public class MainActivity extends AppCompatActivity {
         double spi=Double.parseDouble(s.getText().toString());
         if((Math.abs(ans-spi))<1e-6){
             count=3;
-            lorentz_home.setBackgroundColor(getResources().getColor(R.color.right));
+            new CountDownTimer(1000, 1000) {
+                public void onTick(long millisUntilFinished) {
+                    lorentz_home.setBackgroundColor(getResources().getColor(R.color.right));
+                }
+
+                public void onFinish() {
+                    lorentz_home.setBackgroundColor(getResources().getColor(R.color.white));
+                }
+            }.start();
             Toast.makeText(this, "Correct Ans", Toast.LENGTH_SHORT).show();
         }
         else {
             count--;
-            lorentz_home.setBackgroundColor(getResources().getColor(R.color.wrong));
+            new CountDownTimer(1000, 1000) {
+                public void onTick(long millisUntilFinished) {
+                    lorentz_home.setBackgroundColor(getResources().getColor(R.color.wrong));
+                }
+
+                public void onFinish() {
+                    lorentz_home.setBackgroundColor(getResources().getColor(R.color.white));
+                }
+            }.start();
             if(count>0)
             Toast.makeText(this, "Wrong Ans "+count+ " Chances Remaining", Toast.LENGTH_SHORT).show();
             else{
