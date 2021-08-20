@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
@@ -48,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void spiclick(View view) {
+        cancelTimer();
+
         ConstraintLayout lorentz_home = findViewById(R.id.container);
         lorentz_home.setBackgroundColor(getResources().getColor(R.color.white));
         //Vibration
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         vibe.vibrate(80);
 
         BottomNavigationView bottomNavigationView;
-        bottomNavigationView = (BottomNavigationView)findViewById(R.id.nav_view);
+        bottomNavigationView = findViewById(R.id.nav_view);
         bottomNavigationView.setSelectedItemId(R.id.navigation_spi);
     }
 
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         //Toast.makeText(this, dateString, Toast.LENGTH_SHORT).show();
         cur_time.setText("Current Time is " + dateString);
 
-        float h,m,s,ans=0;
+        float h,m,s,ans;
         h=Float.parseFloat(dateString.substring(0,2));
         m=Float.parseFloat(dateString.substring(3,5));
         s=Float.parseFloat(dateString.substring(6,8));
@@ -84,10 +85,36 @@ public class MainActivity extends AppCompatActivity {
 
         spi_ans.setText("SPI Factor is "+ans);
 
-        updateTextView();
+        //startTimer(10);
+    }
+
+    //Declare timer
+    CountDownTimer cTimer = null;
+
+    //start timer function
+    void startTimer(int sec) {
+        cTimer = new CountDownTimer(sec* 1000L, 1000) {
+            public void onTick(long millisUntilFinished) {
+                updateTextView();
+            }
+            public void onFinish() {
+                //Toast.makeText(MainActivity.this, "Times Up", Toast.LENGTH_SHORT).show();
+                //Score=0;
+            }
+        };
+        cTimer.start();
+    }
+
+    //cancel timer
+    void cancelTimer() {
+        if(cTimer!=null) {
+            cTimer.cancel();
+        }
     }
 
     public void lorclick(View view) {
+        cancelTimer();
+
         ConstraintLayout lorentz_home = findViewById(R.id.container);
         lorentz_home.setBackgroundColor(getResources().getColor(R.color.white));
         count=3;
@@ -96,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
         vibe.vibrate(80);
 
         BottomNavigationView bottomNavigationView;
-        bottomNavigationView = (BottomNavigationView)findViewById(R.id.nav_view);
+        bottomNavigationView = findViewById(R.id.nav_view);
         bottomNavigationView.setSelectedItemId(R.id.navigation_lorentz);
     }
 
@@ -173,27 +200,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateTextView() {
-        MainActivity.this.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                TextView cur_time = findViewById(R.id.cur_time);
-                TextView spi_ans = findViewById(R.id.spi_ans);
+        MainActivity.this.runOnUiThread(() -> {
+            TextView cur_time = findViewById(R.id.cur_time);
+            TextView spi_ans = findViewById(R.id.spi_ans);
 
-                SimpleDateFormat dateFormat= new SimpleDateFormat("hh:mm:ss a");
-                String dateString = dateFormat.format(new Date());
-                //Toast.makeText(this, dateString, Toast.LENGTH_SHORT).show();
-                cur_time.setText("Current Time is " + dateString);
+            SimpleDateFormat dateFormat= new SimpleDateFormat("hh:mm:ss a");
+            String dateString = dateFormat.format(new Date());
+            //Toast.makeText(this, dateString, Toast.LENGTH_SHORT).show();
+            cur_time.setText("Current Time is " + dateString);
 
-                float h,m,s,ans=0;
-                h=Float.parseFloat(dateString.substring(0,2));
-                m=Float.parseFloat(dateString.substring(3,5));
-                s=Float.parseFloat(dateString.substring(6,8));
+            float h,m,s,ans;
+            h=Float.parseFloat(dateString.substring(0,2));
+            m=Float.parseFloat(dateString.substring(3,5));
+            s=Float.parseFloat(dateString.substring(6,8));
 
-                ans=1/(m*m*m + s);
-                for(int i=2;i<=h;i++)ans*=i;
+            ans=1/(m*m*m + s);
+            for(int i=2;i<=h;i++)ans*=i;
 
-                spi_ans.setText("SPI Factor is "+ans);
-            }
+            spi_ans.setText("SPI Factor is "+ans);
         });
 
     }
